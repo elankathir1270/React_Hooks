@@ -1,13 +1,117 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* base page */
+:root {
+  --blue: #1e78c6;
+  --muted: #6d6d6d;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(#ffffff 0%, #f6f7f9 100%);
+  color: #333;
+}
+
+/* header */
+.app-header {
+  background: var(--blue);
+  color: #fff;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 34px;
+  font-weight: 700;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* page container */
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* login card */
+.login-card {
+  width: 640px;
+  max-width: 95%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 34px;
+  box-shadow: 0 8px 18px rgba(15, 20, 30, 0.06);
+  border: 1px solid rgba(200, 180, 200, 0.12);
+}
+
+/* grid layout (label + control) */
+.login-form {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-row-gap: 18px;
+  align-items: center;
+}
+
+/* labels */
+.login-form label {
+  color: #5a5a5a;
+  font-weight: 600;
+  padding-left: 6px;
+}
+
+/* inputs */
+.login-form input {
+  width: 100%;
+  height: 36px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+  transition: box-shadow 0.12s, border-color 0.12s;
+}
+
+.login-form input:focus {
+  box-shadow: 0 0 0 4px rgba(30, 120, 198, 0.06);
+  border-color: rgba(30, 120, 198, 0.5);
+}
+
+/* invalid style like the screenshot */
+.invalid {
+  background: #f8d7d7;
+  border-color: #e0aeb0;
+}
+
+/* button row spans both columns */
+.button-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+/* rounded login button */
+.btn {
+  width: 160px;
+  height: 48px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.btn[disabled] {
+  background: #d6d6d6;
+  color: #7a7a7a;
+  cursor: not-allowed;
 }
