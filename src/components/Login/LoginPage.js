@@ -83,7 +83,7 @@ export default function LoginPage(props) {
   };
 
   function handelSubmit(event) {
-    event.preventdefault();
+    event.preventDefault();
     props.onLogin(emailState.value, passwordState.value);
   }
 

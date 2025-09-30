@@ -1,0 +1,31 @@
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.nav li {
+  margin: 0 10px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav button {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 4px 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.nav button:hover,
+.nav a:hover {
+  color: #ffeb3b;
+}
