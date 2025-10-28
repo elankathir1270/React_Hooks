@@ -6,10 +6,7 @@ const MainHeader = (props) => {
   return (
     <header className={classes["main-header"]}>
       <h1>Demo React App</h1>
-      <Navigation
-        isLoggedIn={props.isAuthenticated}
-        onLogout={props.onLogout}
-      />
+      <Navigation />
     </header>
   );
 };

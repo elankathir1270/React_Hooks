@@ -1,4 +1,5 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, useContext } from "react";
+import AuthContext from "../Context/AuthContext";
 
 export default function LoginPage(props) {
   //   const [enteredEmail, setEnteredEmail] = useState("");
@@ -6,6 +7,7 @@ export default function LoginPage(props) {
   //   const [enteredPassword, setEnteredPassword] = useState("");
   //   const [validPassword, setValidPassword] = useState(undefined);
   const [formValid, setFormValid] = useState(false);
+  const context = useContext(AuthContext);
 
   function emailReducer(state, action) {
     switch (action.type) {
@@ -84,7 +86,7 @@ export default function LoginPage(props) {
 
   function handelSubmit(event) {
     event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
+    context.onLogin(emailState.value, passwordState.value);
   }
 
   return (

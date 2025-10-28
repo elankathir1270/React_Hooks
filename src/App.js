@@ -1,39 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Demo from "./components/Reducer demo/ReducerDemo";
 import HomePage from "./components/Home/HomePage";
 import LoginPage from "./components/Login/LoginPage";
 import MainHeader from "./components/MainHeader/MainHeader";
-
+import AuthContext from "./components/Context/AuthContext";
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // run once: check localStorage for persisted login state
-  useEffect(() => {
-    const storedUser = localStorage.getItem("isLoggedIn");
-    if (storedUser === "1") {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-  const loginHandler = (email, password) => {
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(true);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  };
+  let context = useContext(AuthContext);
 
   return (
-    <React.Fragment>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+    //authContext is one of root components so here fragment is no need
+    <>
+      <MainHeader />
       <main>
-        {!isLoggedIn && <LoginPage onLogin={loginHandler} />}
-        {isLoggedIn && <HomePage onLogout={logoutHandler} />}
+        {!context.isLoggedIn && <LoginPage />}
+        {context.isLoggedIn && <HomePage />}
       </main>
       {/* <Demo /> */}
-    </React.Fragment>
+    </>
   );
 }
 
