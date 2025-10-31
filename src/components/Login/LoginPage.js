@@ -1,5 +1,12 @@
-import React, { useState, useReducer, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useReducer,
+  useEffect,
+  useContext,
+  useRef,
+} from "react";
 import AuthContext from "../Context/AuthContext";
+import Input from "../Input/Input";
 
 export default function LoginPage(props) {
   //   const [enteredEmail, setEnteredEmail] = useState("");
@@ -40,6 +47,9 @@ export default function LoginPage(props) {
     value: "",
     isValid: undefined,
   });
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   useEffect(() => {
     let timerVal = setTimeout(() => {
@@ -86,15 +96,44 @@ export default function LoginPage(props) {
 
   function handelSubmit(event) {
     event.preventDefault();
-    context.onLogin(emailState.value, passwordState.value);
+    if (formValid) {
+      context.onLogin(emailState.value, passwordState.value);
+    } else if (!emailState.isValid) {
+      emailRef.current.onFocus();
+    } else {
+      passwordRef.current.onFocus();
+    }
   }
 
   return (
     <div className="login-card" aria-live="polite">
       <form className="login-form" onSubmit={handelSubmit}>
-        <label htmlFor="email">E-Mail</label>
+        <Input
+          ref={emailRef}
+          id="email"
+          type="text"
+          value={emailState.value}
+          isValid={emailState.isValid}
+          onChangeHandler={handelEmailChange}
+          onBlurHandler={handelValidEmail}
+        >
+          E-Mail
+        </Input>
+        <Input
+          ref={passwordRef}
+          id="password"
+          type="password"
+          value={passwordState.value}
+          isValid={passwordState.isValid}
+          onChangeHandler={handelPasswordChange}
+          onBlurHandler={handelValidPassword}
+        >
+          Password
+        </Input>
+        {/* <label htmlFor="email">E-Mail</label>
         <div>
           <input
+            ref={emailRef}
             id="email"
             type="text"
             value={emailState.value}
@@ -107,6 +146,7 @@ export default function LoginPage(props) {
         <label htmlFor="password">Password</label>
         <div>
           <input
+            ref={passwordRef}
             id="password"
             type="password"
             value={passwordState.value}
@@ -114,10 +154,11 @@ export default function LoginPage(props) {
             onBlur={handelValidPassword}
             className={passwordState.isValid === false ? "invalid" : ""}
           />
-        </div>
+        </div> */}
 
         <div className="button-row">
-          <button type="submit" disabled={!formValid} className="btn">
+          {/* disabled={!formValid} */}
+          <button type="submit" className="btn">
             Login
           </button>
         </div>
